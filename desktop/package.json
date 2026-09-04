@@ -1,0 +1,33 @@
+{
+  "name": "pitwall",
+  "version": "1.0.0",
+  "description": "Pitwall — timing live open-source pour le motorsport (F1 via OpenF1, extensible à d'autres séries).",
+  "main": "main.js",
+  "author": "Pitwall contributors",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.pitwall.app",
+    "productName": "Pitwall",
+    "files": [
+      "main.js",
+      "preload.js",
+      "../web/**/*"
+    ],
+    "win": {
+      "target": ["nsis"]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "publish": null
+  }
+}

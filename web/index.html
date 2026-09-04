@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pitwall — Timing live</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-left">
+    <span class="brand">PITWALL</span>
+    <span class="brand-sub">timing live</span>
+  </div>
+
+  <div class="topbar-center" id="sessionInfo">
+    <span class="session-name" id="sessionName">—</span>
+    <span class="session-meta" id="sessionMeta">Chargement de la session…</span>
+  </div>
+
+  <div class="topbar-right">
+    <select id="seriesSelect" class="series-select">
+      <option value="f1">Formule 1</option>
+      <option value="wec">WEC</option>
+      <option value="imsa">IMSA</option>
+    </select>
+    <div class="status-pill" id="statusPill">
+      <span class="status-dot" id="statusDot"></span>
+      <span id="statusLabel">Connexion…</span>
+    </div>
+  </div>
+</header>
+
+<div id="seriesNotice" class="series-notice hidden"></div>
+
+<main class="layout">
+
+  <section class="panel map-panel">
+    <div class="panel-head">
+      <h2>Circuit</h2>
+      <span class="panel-flag" id="flagBadge">—</span>
+    </div>
+    <div class="map-wrap">
+      <svg id="trackSvg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="map-empty hidden" id="mapEmpty">
+        Aucune donnée de position reçue.<br>La carte s'affichera dès réception du flux live.
+      </div>
+    </div>
+    <div class="weather-strip" id="weatherStrip">
+      <span class="weather-item">Air <b id="wAir">—</b></span>
+      <span class="weather-item">Piste <b id="wTrack">—</b></span>
+      <span class="weather-item">Vent <b id="wWind">—</b></span>
+      <span class="weather-item">Pluie <b id="wRain">—</b></span>
+    </div>
+  </section>
+
+  <section class="panel tower-panel">
+    <div class="panel-head">
+      <h2>Classement</h2>
+      <span class="freshness" id="towerFreshness">—</span>
+    </div>
+    <div class="tower-table-wrap">
+      <table class="tower-table">
+        <thead>
+          <tr>
+            <th>Pos</th>
+            <th>Pilote</th>
+            <th>Écart</th>
+            <th>Interv.</th>
+            <th>Dernier tour</th>
+            <th>Pneu</th>
+            <th>Stops</th>
+          </tr>
+        </thead>
+        <tbody id="towerBody">
+          <tr class="empty-row"><td colspan="7">En attente de données…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel detail-panel">
+    <div class="panel-head">
+      <h2>Détail pilote</h2>
+      <span class="freshness" id="detailFreshness">—</span>
+    </div>
+    <div id="detailEmpty" class="detail-empty">
+      Sélectionne un pilote dans le classement pour voir ses données détaillées.
+    </div>
+    <div id="detailBody" class="detail-body hidden">
+      <div class="detail-header">
+        <span class="detail-number" id="dNumber">—</span>
+        <div>
+          <div class="detail-name" id="dName">—</div>
+          <div class="detail-team" id="dTeam">—</div>
+        </div>
+      </div>
+      <div class="detail-grid">
+        <div class="detail-cell"><span>Position</span><b id="dPos">—</b></div>
+        <div class="detail-cell"><span>Écart leader</span><b id="dGap">—</b></div>
+        <div class="detail-cell"><span>Intervalle</span><b id="dInt">—</b></div>
+        <div class="detail-cell"><span>Dernier tour</span><b id="dLast">—</b></div>
+        <div class="detail-cell"><span>Meilleur tour</span><b id="dBest">—</b></div>
+        <div class="detail-cell"><span>Secteur 1</span><b id="dS1">—</b></div>
+        <div class="detail-cell"><span>Secteur 2</span><b id="dS2">—</b></div>
+        <div class="detail-cell"><span>Secteur 3</span><b id="dS3">—</b></div>
+        <div class="detail-cell"><span>Pneu</span><b id="dTyre">—</b></div>
+        <div class="detail-cell"><span>Âge pneu</span><b id="dTyreAge">—</b></div>
+        <div class="detail-cell"><span>Arrêts</span><b id="dStops">—</b></div>
+        <div class="detail-cell"><span>Vitesse (dernier point)</span><b id="dSpeed">—</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel radio-panel">
+    <div class="panel-head">
+      <h2>Direction de course</h2>
+      <span class="freshness" id="radioFreshness">—</span>
+    </div>
+    <ul class="radio-feed" id="radioFeed">
+      <li class="empty-row">Aucun message reçu pour l'instant.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <span>Source : OpenF1 (F1 uniquement). Aucune donnée n'est inventée — un champ vide reste vide.</span>
+  <span id="lastFetch">—</span>
+</footer>
+
+<script src="paywall.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -15,8 +15,8 @@
  *   https://tonsite.com/?unlocked=1
  */
 
-const STRIPE_PUBLISHABLE_KEY = 'REMPLACE_MOI_pk_live_ou_pk_test';
-const STRIPE_BUY_BUTTON_ID = 'REMPLACE_MOI_buy_btn_xxx';
+const STRIPE_PUBLISHABLE_KEY = 'pk_live_51T8LZoFQI7jpEqUNDroS657NXCnSFegPituxJ6N5eLrMORBEtXEEgr0VQ4rJSmtW5J9fTv2lF42ldg0iqHxrk4mL00yOydllz7';
+const STRIPE_BUY_BUTTON_ID = 'buy_btn_1UByXLFQI7jpEqUNS9wpogXU';
 const UNLOCK_STORAGE_KEY = 'pitwall_unlocked_v1';
 
 function isDesktopApp(){

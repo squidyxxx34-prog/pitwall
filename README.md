@@ -62,8 +62,8 @@ pitwall/
 ├── desktop/        → wrapper Electron autour de /web (toujours gratuit, sans paywall)
 │   ├── main.js
 │   ├── preload.js  → expose window.pitwallDesktop.isDesktop pour désactiver le paywall
-│   ├── package.json
-│   └── .github/workflows/build.yml   → CI qui build le .exe public
+│   └── package.json
+├── .github/workflows/build.yml   → CI qui build le .exe public (doit rester à la racine du repo)
 └── README.md
 ```
 

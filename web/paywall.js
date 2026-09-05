@@ -9,14 +9,15 @@
  * contournable par quelqu'un de déterminé. Suffisant pour un MVP, pas pour bloquer
  * un partage de lien organisé. À muscler avec une fonction serverless si besoin.
  *
- * Configuration requise avant mise en prod : remplace STRIPE_PUBLISHABLE_KEY et
- * STRIPE_BUY_BUTTON_ID par les valeurs de ton Dashboard Stripe (Payment links > Buy button).
- * Dans la config du Buy Button côté Stripe, mets l'URL de confirmation sur :
- *   https://tonsite.com/?unlocked=1
+ * Configuration : les valeurs Stripe viennent de window.PITWALL_STRIPE_CONFIG,
+ * défini dans config.js. En local ce fichier contient des placeholders ; sur
+ * Vercel il est régénéré au build depuis les Environment Variables du projet
+ * (voir build-config.js et README).
  */
 
-const STRIPE_PUBLISHABLE_KEY = 'pk_live_51T8LZoFQI7jpEqUNDroS657NXCnSFegPituxJ6N5eLrMORBEtXEEgr0VQ4rJSmtW5J9fTv2lF42ldg0iqHxrk4mL00yOydllz7';
-const STRIPE_BUY_BUTTON_ID = 'buy_btn_1UByXLFQI7jpEqUNS9wpogXU';
+const STRIPE_CONFIG = window.PITWALL_STRIPE_CONFIG || {};
+const STRIPE_PUBLISHABLE_KEY = STRIPE_CONFIG.publishableKey || 'REMPLACE_MOI_pk_live_ou_pk_test';
+const STRIPE_BUY_BUTTON_ID = STRIPE_CONFIG.buyButtonId || 'REMPLACE_MOI_buy_btn_xxx';
 const UNLOCK_STORAGE_KEY = 'pitwall_unlocked_v1';
 
 function isDesktopApp(){

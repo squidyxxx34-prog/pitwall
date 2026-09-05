@@ -48,6 +48,14 @@ npm start
 
 Tant que ces valeurs ne sont pas remplacées, l'overlay affiche un message "Stripe non configuré" au lieu du bouton — pas de faux bouton de paiement qui ne marche pas.
 
+**Config sur Vercel (variables d'environnement, pas de clé en dur dans le repo)** :
+1. Importe le repo GitHub dans Vercel.
+2. Dans Settings > Environment Variables, ajoute `STRIPE_PUBLISHABLE_KEY` et `STRIPE_BUY_BUTTON_ID`.
+3. `vercel.json` fait le reste (`buildCommand: npm run build`, qui exécute `build-config.js` pour générer `web/config.js` avec tes vraies valeurs à chaque déploiement).
+4. Redéploie — le placeholder disparaît, le vrai bouton Stripe apparaît.
+
+Précision utile : une clé Stripe **publishable** est faite pour être exposée côté client (c'est écrit dans son nom) — la mettre en variable d'environnement, c'est pour la config propre et pouvoir changer de clé sans toucher au code, pas pour la "cacher". Rien de sensible ne fuit si elle reste en dur ; c'est la clé secrète (`sk_...`) qu'il ne faut jamais mettre côté client, et Pitwall n'en a pas besoin puisqu'il n'y a pas de backend.
+
 **Limite assumée** : le déblocage est vérifié côté client (`localStorage` + paramètre `?unlocked=1` après paiement). Ça suffit pour un MVP, mais n'empêche pas un partage de lien organisé entre deux personnes. Si ça devient un vrai problème, il faudra une fonction serverless (Vercel Function / Cloudflare Worker) qui vérifie la session Stripe côté serveur avant de servir la page — pas la peine de la construire avant d'avoir un premier client payant.
 
 ## Structure

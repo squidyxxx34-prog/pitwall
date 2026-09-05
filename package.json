@@ -1,0 +1,7 @@
+{
+  "name": "pitwall-web",
+  "private": true,
+  "scripts": {
+    "build": "node build-config.js"
+  }
+}

@@ -16,7 +16,13 @@ function createWindow () {
     },
   });
 
-  win.loadFile(path.join(__dirname, '..', 'web', 'index.html'));
+  const indexPath = app.isPackaged
+    ? path.join(process.resourcesPath, 'web', 'index.html')
+    : path.join(__dirname, '..', 'web', 'index.html');
+
+  win.loadFile(indexPath).catch((err) => {
+    console.error('Failed to load index.html at', indexPath, err);
+  });
 }
 
 app.whenReady().then(() => {
